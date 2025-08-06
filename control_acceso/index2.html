@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Empleado</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <img src="images/home-slide-1.jpg" alt="Banner Principal" class="banner">
+    </header>
+
+    <h1>CONTROL DE ACCESO DIARIO EN PUESTO RESIDENCIA DE FRANCIA</h1>
+
+    <!-- Formulario de eliminación de empleado -->
+    <label for="nombre_empleado">Empleado a eliminar:</label>
+    <select id="nombre_empleado" required>
+        <!-- Opciones de empleados se cargarán aquí dinámicamente -->
+    </select>
+    
+    <button type="button" onclick="eliminarEmpleadoSeleccionado()" class="register-btn">ELIMINAR EMPLEADO</button>
+    
+    <button type="button" onclick="logout()" class="logout-btn">LOGOUT</button>
+</div>
+
+<script>
+    function fetchEmployees() {
+        fetch('get_employees.php')
+            .then(response => response.json())
+            .then(data => {
+                const select = document.getElementById('nombre_empleado');
+                select.innerHTML = '';
+
+                const defaultOption = document.createElement('option');
+                defaultOption.value = '';
+                defaultOption.textContent = 'Seleccione un empleado';
+                select.appendChild(defaultOption);
+
+                data.forEach(emp => {
+                    const option = document.createElement('option');
+                    option.value = emp.id;
+                    option.textContent = emp.nombre;
+                    select.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error al cargar los empleados:', error);
+            });
+    }
+    
+    function eliminarEmpleadoSeleccionado() {
+        const select = document.getElementById('nombre_empleado');
+        const idEmpleado = select.value;
+
+        if (!idEmpleado) {
+            alert('Por favor, selecciona un empleado para eliminar.');
+            return;
+        }
+
+        eliminarEmpleado(idEmpleado);
+    }
+
+    function eliminarEmpleado(id) {
+        fetch('eliminar_empleado.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: id })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Empleado eliminado con éxito.');
+                fetchEmployees(); // Recargar la lista de empleados
+            } else {
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    function logout() {
+        // Puedes agregar aquí lógica adicional antes de redirigir, como limpiar datos del usuario
+        console.log("Cerrando sesión...");
+        window.location.href = 'login.html';
+        }
+
+    window.onload = function() {
+        fetchEmployees();
+    };
+</script>
+</body>
+</html>

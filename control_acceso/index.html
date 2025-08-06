@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Acceso Diario</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="container">
+    <header>
+        <img src="images/home-slide-1.jpg" alt="Banner Principal" class="banner">
+    </header>
+
+    <h1>CONTROL DE ACCESO DIARIO EN PUESTO RESIDENCIA DE FRANCIA</h1>
+
+    <form action="guardar_registro.php" method="POST" onsubmit="saveFormData()">
+        <!-- Campo Agente de Seguridad -->
+        <div class="fields-container">
+            <div class="field">
+                <label for="agente_seguridad">Agente de Seguridad:</label>
+                <input type="text" id="agente_seguridad" name="seguridad" required>
+            </div>
+        </div>
+
+        <!-- Puesta de Servicio y Fin de Servicio -->
+        <div class="service-fields-container">
+            <div class="service-field">
+                <label for="puesta_servicio">Puesta de Servicio:</label>
+                <input type="time" id="puesta_servicio" name="servicio" required>
+            </div>
+            <div class="service-field">
+                <label for="fin_servicio">Fin de Servicio:</label>
+                <input type="time" id="fin_servicio" name="fin_servicio" required>
+            </div>
+        </div>
+
+        <!-- Fecha y Reloj -->
+        <div class="date" id="date">Fecha: </div>
+        <div class="clock" id="clock">00:00:00</div>
+
+        <!-- Tipo de Persona -->
+        <label for="tipo_persona">Tipo de Persona:</label>
+        <select id="tipo_persona" name="tipo_persona" onchange="toggleFields()">
+            <option value="empleado">Empleado</option>
+            <option value="visitante">Visitante</option>
+        </select>
+
+        <!-- Campos para Empleado -->
+        <div id="empleado-fields">
+            <label for="nombre_empleado">Nombre del Empleado:</label>
+            <select id="nombre_empleado" name="nombre_empleado" onchange="updateFuncion()">
+                <!-- Opciones de empleados se cargarán aquí dinámicamente -->
+            </select>
+
+            <label for="funcion_empleado">Función:</label>
+            <input type="text" id="funcion_empleado" name="funcion_empleado" readonly>
+        </div>
+
+        <!-- Campos para Visitante -->
+        <div id="visitante-fields" class="hidden">
+            <label for="nombre_visitante">Nombre(s):</label>
+            <input type="text" id="nombre_visitante" name="nombre_visitante">
+
+            <label for="apellido">Apellido(s):</label>
+            <input type="text" id="apellido" name="apellido">
+
+            <label for="cedula">Cédula:</label>
+            <input type="text" id="cedula" name="cedula">
+
+            <label for="matricula">Matrícula:</label>
+            <input type="text" id="matricula" name="matricula">
+
+            <label for="funcion_visitante">Función:</label>
+            <input type="text" id="funcion_visitante" name="funcion_visitante">
+        </div>
+
+        <!-- Mensaje de éxito -->
+        <div id="success-message" class="success-message hidden">
+            <p id="registro-exitoso"></p>
+        </div>
+
+        <!-- Botones -->
+        <button type="submit" class="register-btn">REGISTRAR</button>
+        <button type="button" onclick="window.location.href='consulta_horas.php'" class="register-btn">CONSULTAR</button>
+        <button type="button" onclick="openModal()" class="register-btn">AGREGAR EMPLEADO</button>
+        <button type="button" onclick="logout()" class="logout-btn">LOGOUT</button>
+    </form>
+
+    <!-- Modal para agregar empleado -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <form action="agregar_empleado.php" method="POST" onsubmit="return addEmployee()">
+                <label for="new_nombre">Nombre:</label>
+                <input type="text" id="new_nombre" name="new_nombre" required>
+                
+                <label for="new_funcion">Función:</label>
+                <input type="text" id="new_funcion" name="new_funcion" required>
+                
+                <button type="submit">Agregar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar/Ocultar campos según el tipo de persona
+        function toggleFields() {
+            const tipoPersona = document.getElementById('tipo_persona').value;
+            const empleadoFields = document.getElementById('empleado-fields');
+            const visitanteFields = document.getElementById('visitante-fields');
+
+            if (tipoPersona === 'empleado') {
+                empleadoFields.style.display = 'block';
+                visitanteFields.style.display = 'none';
+            } else {
+                empleadoFields.style.display = 'none';
+                visitanteFields.style.display = 'block';
+            }
+        }
+
+        // Cargar datos de agente y empleados
+        window.onload = function() {
+            fetchAgentData();
+            fetchEmployees();
+            toggleFields();
+            checkSuccess();
+        };
+
+        function fetchAgentData() {
+            fetch('get_agent_data.php')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('agente_seguridad').value = data.seguridad;
+                    document.getElementById('puesta_servicio').value = data.servicio;
+                    document.getElementById('fin_servicio').value = data.fin_servicio;
+                });
+        }
+
+        let empleados = [];
+        function fetchEmployees() {
+            fetch('get_employees.php')
+                .then(response => response.json())
+                .then(data => {
+                    empleados = data;
+                    const select = document.getElementById('nombre_empleado');
+                    data.forEach((emp, index) => {
+                        const option = document.createElement('option');
+                        option.value = emp.nombre;
+                        option.textContent = emp.nombre;
+                        select.appendChild(option);
+        
+                        // Establecer el primer empleado como seleccionado por defecto
+                        if (index === 0) {
+                            select.value = emp.nombre;
+                            document.getElementById('funcion_empleado').value = emp.funcion;
+                        }
+                    });
+                });
+        }
+
+        function updateFuncion() {
+            const nombreEmpleado = document.getElementById('nombre_empleado').value;
+            const empleado = empleados.find(emp => emp.nombre === nombreEmpleado);
+            document.getElementById('funcion_empleado').value = empleado ? empleado.funcion : '';
+        }
+
+        function updateClock() {
+            const now = new Date();
+            let hours = now.getHours();
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+        }
+        setInterval(updateClock, 1000);
+
+        function updateDate() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('date').textContent = `Fecha: ${now.toLocaleDateString('es-ES', options)}`;
+        }
+        updateDate();
+
+        // Función para agregar un empleado
+        function addEmployee() {
+            const nombre = document.getElementById('new_nombre').value;
+            const funcion = document.getElementById('new_funcion').value;
+            
+            if (nombre.trim() === '' || funcion.trim() === '') {
+                alert("Por favor, complete todos los campos.");
+                return false;  // No enviamos el formulario si faltan datos
+            }
+        
+            // Aquí podrías agregar lógica adicional para validar los datos si lo deseas.
+            
+            alert("Empleado agregado con éxito."); // Mensaje de éxito
+            
+            // Aquí podrías refrescar la lista de empleados, si lo deseas.
+            fetchEmployees();
+
+            return true;  // Permite enviar el formulario
+        }
+
+        // Función para abrir el modal
+        function openModal() {
+            document.getElementById('myModal').style.display = 'block';
+        }
+
+        // Función para cerrar el modal
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+
+        function logout() {
+        // Puedes agregar aquí lógica adicional antes de redirigir, como limpiar datos del usuario
+        console.log("Cerrando sesión...");
+        window.location.href = 'login.html';
+        }
+
+        // Mostrar el mensaje de éxito cuando la página carga, si existe un parámetro de éxito en la URL
+        function checkSuccess() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const success = urlParams.get('success');
+            const successMessage = document.getElementById('success-message');
+        
+            // Si hay un parámetro 'success' en la URL, muestra el mensaje
+            if (success) {
+                successMessage.classList.remove('hidden');
+            } else {
+                // Si no hay éxito, asegúrate de que el mensaje esté oculto
+                successMessage.classList.add('hidden');
+            }
+        }
+        
+        // Llamar a checkSuccess cuando la página cargue
+        window.onload = function() {
+            fetchAgentData();
+            fetchEmployees();
+            toggleFields();
+            checkSuccess(); // Esta es la función que maneja la visibilidad del mensaje
+        };
+        
+
+    </script>
+
+</div>
+</body>
+</html>

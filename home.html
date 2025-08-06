@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>home</title>
+
+   <!-- swiper css link  -->
+   <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+   <!-- header section starts  -->
+
+<section class="header">
+
+   <a href="home.html" class="logo">Seguridad Residencial y Comercial S.R.L.</a>
+
+   <nav class="navbar">
+      <a href="home.html" data-language="en" data-section="ch1">Inicio</a>
+      <a href="about.html">Sobre nosotros</a>
+      <a href="package.html">Clientes</a>
+      <a href="servicios.html">Servicios</a>
+      <a href="http://localhost/SRC_Responsive_Website_Project/control_acceso/login.html">Control de Acceso</a>
+   </nav>
+
+   <div id="menu-btn" class="fas fa-bars"></div>
+
+   <!-- language section starts -->
+
+   <body>
+      <span class="en">EN</span>
+      <input id="lang-button" type="checkbox" class="check" checked>
+      <span class="es">ES</span>
+   </body>
+
+<!-- language section ends -->
+
+<script>
+   $connection = mysqli_connect('localhost','root','','book_db');
+
+</script>
+
+</section>
+
+<!-- header section ends -->
+   <h2>
+      <div class="contador-contenedor">
+         <p>Visitas: <span id="Contador" class="contador-estilo"></span> </p>
+      </div>
+   </h2>
+
+<!-- home section starts  -->
+
+<section class="home">
+
+   <div class="swiper home-slider">
+
+      <div class="swiper-wrapper">
+
+         <div class="swiper-slide slide" style="background:url(images/home-slide-1.jpg) no-repeat">
+            <div class="content"></div>
+         </div>
+
+         <div class="swiper-slide slide" style="background:url(images/home-slide-4.png) no-repeat">
+            <div class="content">
+               <h3>seguridad personalizada a su medida</h3>
+            </div>
+         </div>
+
+         <div class="swiper-slide slide" style="background:url(images/home-slide-3.jpg) no-repeat">
+            <div class="content">
+               <h3>Centro de Monitoreo 24/7</h3>
+            </div>
+         </div>
+         
+      </div>
+
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+
+   </div>
+   
+
+</section>
+
+<!-- home section ends -->
+
+<!-- services section starts  -->
+
+<section class="services">
+
+   <h1 class="heading-title"> nuestros servicios </h1>
+
+   <div class="box-container">
+
+      <div class="box">
+         <a href="servicios2.html"><img src="images/icon-1.png" alt=""></a>
+         <h3>Seguridad y Protección</h3>
+      </div>
+
+      <div class="box">
+         <a href="servicios3.html"><img src="images/icon-2.png" alt=""></a>
+         <h3>Seguridad electrónica</h3>
+      </div>
+
+      <div class="box">
+         <a href="servicios4.html"><img src="images/icon-3.png" alt=""></a>
+         <h3>Cámaras de seguridad</h3>
+      </div>
+
+      <div class="box">
+         <a href="servicios5.html"><img src="images/icon-4.png" alt=""></a>
+         <h3>Consultoría de Seguridad</h3>
+      </div>
+
+      <div class="box">
+         <a href="servicios6.html"><img src="images/icon-5.png" alt=""></a>
+         <h3>Capacitaciones</h3>
+      </div>
+
+      <div class="box">
+         <a href="servicios.html"><img src="images/icon-6.png" alt=""></a>
+         <h3>Otros servicios</h3>
+      </div>
+
+   </div>
+
+</section>
+
+<!-- services section ends -->
+
+<!-- home about section starts  -->
+
+<section class="home-about">
+
+   <div class="image">
+      <img src="images/about-img.jpg" alt="">
+   </div>
+
+   <div class="content">
+      <h3>Sobre nosotros</h3>
+      <p align="justify">Somos una empresa Dominicana con raíces internacionales, que tiene por objetivo desarrollar, establecer y realizar todo tipo de servicios de seguridad según la necesidad del cliente, en el sector público y privado a nivel nacional e internacional.</p>
+      <a href="about.html" class="btn">Leer más</a>
+   </div>
+
+</section>
+
+<!-- home about section ends -->
+
+<!-- home packages section starts  -->
+
+<section class="home-packages">
+
+   <h1 class="heading-title"> nuestros clientes </h1>
+
+   <div class="box-container">
+
+      <div class="box">
+         <div class="image">
+            <img src="images/img-1.jpg" alt="">
+         </div>
+         <div class="content">
+         </div>
+      </div>
+
+      <div class="box">
+         <div class="image">
+            <img src="images/img-2.jpg" alt="">
+         </div>
+         <div class="content">
+         </div>
+      </div>
+      
+      <div class="box">
+         <div class="image">
+            <img src="images/img-3.jpg" alt="">
+         </div>
+         <div class="content">
+      </div>
+
+   </div>
+   <p></p>
+
+   <div class="load-more"> <a href="package.html" class="btn">Ver más</a> </div>
+
+</section>
+
+<!-- home packages section ends -->
+
+<!-- home offer section starts  -->
+
+<section class="home-offer">
+   <div class="content">
+      <h3>Conócenos</h3>
+      <p>Somos una Empresa Dominicana especializada en servicios de seguridad, fundada en el año 2004 como respuesta a la creciente demanda de servicios de seguridad con una mejor calidad en la República Dominicana.</p>
+   <a href="about.html" class="btn">Conoce más</a>
+   </div>
+   
+</section>
+
+<!-- home offer section ends -->
+
+
+
+<!-- footer section starts  -->
+
+<section class="footer">
+
+   <div class="box-container">
+
+      <div class="box">
+         <h3>Enlaces rápidos</h3>
+         <a href="home.html"> <i class="fas fa-angle-right"></i> Inicio </a>
+         <a href="about.html"> <i class="fas fa-angle-right"></i> Sobre nosotros</a>
+         <a href="package.html"> <i class="fas fa-angle-right"></i> Clientes</a>
+         <a href="servicios.html"> <i class="fas fa-angle-right"></i> Servicios</a>
+      </div>
+
+      <div class="box">
+         <h3>Enlaces adicionales</h3>
+         <a href="mailto:contacto@src.com.do"> <i class="fas fa-angle-right"></i> Déjanos un mensaje</a>
+         <a href="#"> <i class="fas fa-angle-right"></i> Sobre nosotros</a>
+         <a href="#"> <i class="fas fa-angle-right"></i> Políticas de privacidad</a>
+         <a href="#"> <i class="fas fa-angle-right"></i> Términos y condiciones</a>
+      </div>
+
+      <div class="box">
+      <h3>Contacto</h3>
+         <a href="#"> <i class="fas fa-phone"></i> 809-732-5905</a>
+         <a href="https://wa.me/8098701062"> <i class="fab fa-whatsapp"></i> 809-870-1062</a>
+         <a href="mailto:contacto@src.com.do"> <i class="fas fa-envelope"></i> contacto@src.com.do</a>
+         <a href="https://www.google.com/maps/place/INDOSING/@18.4916567,-69.8511476,15z/data=!4m6!3m5!1s0x8ea562040a8feae7:0xc6399851f1589471!8m2!3d18.4916567!4d-69.8511476!16s%2Fg%2F11clh524c_?entry=ttu"> <i class="fas fa-map"></i> C/ Luis F. Thomen No. 255, Evaristo Morales, Sto. Dgo. R.D. </a>
+      </div>
+
+      <div class="box">
+         <h3>Síguenos</h3>
+         <a href="https://www.facebook.com/seguridadsrc/"> <i class="fab fa-facebook-f"></i> Facebook </a>
+         <a href="https://twitter.com/SRCseguridadRD"> <i class="fab fa-twitter"></i> Twitter </a>
+         <a href="https://instagram.com/srcseguridadrd?igshid=MzRlODBiNWFlZA=="> <i class="fab fa-instagram"></i> Instagram </a>
+         <a href="#"> <i class="fab fa-linkedin"></i> Linkedin </a>
+      </div>
+
+   </div>
+   
+
+   <div class="credit"> Elaborado por <span>Armando Noel Diseñador Web</span> | All Rights Reserved! </div>
+
+</section>
+
+<!-- footer section ends -->
+
+<!-- swiper js link  -->
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+<script>
+   var check=document.querySelector(".check");
+check.addEventListener('click',idioma);
+
+function idioma(){
+   let id=check.checked;
+   if(id==true){
+      location.href="../home.html";
+   }else{
+      location.href="English/home.html";
+   }
+}
+
+let visitas = localStorage.getItem('Contador_visitas');
+   if(!visitas){
+      visitas = 0;
+   }
+   visitas++;
+   localStorage.setItem('Contador_visitas', visitas);
+   document.getElementById('Contador').textContent = visitas;
+
+</script>
+
+</body>
+</html>

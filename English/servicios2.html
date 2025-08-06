@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Our Services</title>
+
+   <!-- swiper css link  -->
+   <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="../css/style.css">
+
+</head>
+<body>
+   
+<!-- header section starts  -->
+
+<section class="header">
+
+    <a href="home.html" class="logo">Seguridad Residencial y Comercial S.R.L.</a>
+
+   <nav class="navbar">
+      <a href="home.html">Home</a>
+      <a href="about.html">About us</a>
+      <a href="package.html">Customers</a>
+      <a href="servicios.html">Services</a>
+   </nav>
+ 
+    <div id="menu-btn" class="fas fa-bars"></div>
+
+<!-- language section starts -->
+
+<body>
+    <span class="en">EN</span>
+    <input type="checkbox" class="check">
+    <span class="es">ES</span>
+ </body>
+
+<!-- language section ends -->
+ 
+ </section>
+ 
+ <!-- header section ends -->
+
+<!-- <div class="heading" style="background:url(../images/header-bg-22.png) no-repeat">
+   <h1>Our Services</h1>
+</div> -->
+
+
+<!-- about section starts  -->
+
+<section class="about">
+
+    <div class="image">
+       <img src="../images/about-img22.jpg" alt="">
+    </div>
+ 
+    <div class="content">
+        <h3>Perimeter Security</h3>
+      <p align="justify">Security officers with or without weapons, to protect lives, assets and property delimited by a defined perimeter, in order to prevent attacks or entry by intruders or unauthorized persons.</p> 
+      
+      <div class="icons-container">
+         <div class="icons">
+            <i class="fas fa-map"></i>
+            <span>availability</span>
+         </div>
+         <div class="icons">
+            <i class="fas fa-hand-holding-usd"></i>
+            <span>affordable price</span>
+         </div>
+         <div class="icons">
+            <i class="fas fa-headset"></i>
+            <span>24/7 guide service</span>
+         </div> 
+   </div>
+
+</section>
+<!-- about section ends -->
+ 
+ 
+ </section>
+ 
+ </section>
+ 
+ <!-- about section ends -->
+
+<!-- footer section starts  -->
+
+<section class="footer">
+
+    <div class="box-container">
+ 
+       <div class="box">
+          <h3>Quick Links</h3>
+          <a href="home.html"> <i class="fas fa-angle-right"></i> Home </a>
+          <a href="about.html"> <i class="fas fa-angle-right"></i> About us</a>
+          <a href="package.html"> <i class="fas fa-angle-right"></i> Customers</a>
+          <a href="servicios.html"> <i class="fas fa-angle-right"></i> Services</a>
+       </div>
+ 
+       <div class="box">
+          <h3>Extra Links</h3>
+          <a href="mailto:contacto@src.com.do"> <i class="fas fa-angle-right"></i> Leave a message</a>
+          <a href="#"> <i class="fas fa-angle-right"></i> About us</a>
+          <a href="#"> <i class="fas fa-angle-right"></i> Privacy policies</a>
+          <a href="#"> <i class="fas fa-angle-right"></i> Terms and Conditions</a>
+       </div>
+ 
+       <div class="box">
+        <h3>Contact Info</h3>
+           <a href="#"> <i class="fas fa-phone"></i> 809-732-5905</a>
+           <a href="https://wa.me/8098701062"> <i class="fab fa-whatsapp"></i> 809-870-1062</a>
+           <a href="mailto:contacto@src.com.do"> <i class="fas fa-envelope"></i> contacto@src.com.do</a>
+           <a href="https://www.google.com/maps/place/INDOSING/@18.4916567,-69.8511476,15z/data=!4m6!3m5!1s0x8ea562040a8feae7:0xc6399851f1589471!8m2!3d18.4916567!4d-69.8511476!16s%2Fg%2F11clh524c_?entry=ttu"> <i class="fas fa-map"></i> C/ Luis F. Thomen No. 255, Evaristo Morales, Sto. Dgo. R.D. </a>
+        </div>
+ 
+       <div class="box">
+          <h3>Follow us</h3>
+          <a href="https://www.facebook.com/seguridadsrc/"> <i class="fab fa-facebook-f"></i> Facebook </a>
+          <a href="https://twitter.com/SRCseguridadRD"> <i class="fab fa-twitter"></i> Twitter </a>
+          <a href="https://instagram.com/srcseguridadrd?igshid=MzRlODBiNWFlZA=="> <i class="fab fa-instagram"></i> Instagram </a>
+          <a href="#"> <i class="fab fa-linkedin"></i> Linkedin </a>
+       </div>
+ 
+    </div>
+ 
+    <div class="credit"> Made by <span>Armando Noel Web Designer</span> | All Rights Reserved! </div>
+ 
+ </section>
+ 
+ <!-- footer section ends -->
+
+<!-- swiper js link  -->
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+<script>
+    var check=document.querySelector(".check");
+ check.addEventListener('click',idioma);
+ 
+ function idioma(){
+    let id=check.checked;
+    if(id==true){
+       location.href="../servicios.html";
+    }else{
+       location.href="English/servicios.html";
+    }
+ }
+ </script>
+
+</body>
+</html>
